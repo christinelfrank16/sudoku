@@ -34,13 +34,13 @@ describe('board-input-validation', function(){
   it('ensure input is not already present in the row', function(){
     var input = 6;
     var coordinate = [2,3];
-    expect(reusableBoard.checkLine(input, coordinate)).toEqual(false);
+    expect(reusableBoard.checkRow(input, coordinate)).toEqual(false);
   });
 
   it('ensure input is not already present in the row', function(){
     var input = 4;
     var coordinate = [2,3];
-    expect(reusableBoard.checkLine(input, coordinate)).toEqual(true);
+    expect(reusableBoard.checkRow(input, coordinate)).toEqual(true);
   });
 
   it('ensure input at coordinate location is not fixed value from start', function(){
@@ -52,5 +52,21 @@ describe('board-input-validation', function(){
     var coordinate = [2,2];
     expect(reusableBoard.checkInitCoord(coordinate)).toEqual(false);
   });
+
+  it('ensure input is not already present in the column', function(){
+    var input = 8;
+    var coordinate = [2,3];
+    expect(reusableBoard.checkCol(input, coordinate)).toEqual(false);
+  });
+
+  it('ensure input is not already present in the column', function(){
+    var input = 4;
+    var coordinate = [2,3];
+    expect(reusableBoard.checkCol(input, coordinate)).toEqual(true);
+  });
+
+
+
+
 
 });

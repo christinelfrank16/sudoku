@@ -19,7 +19,7 @@ Board.prototype.makeBoard = function(){
   this.initBoard = newArray.slice();
 }
 
-Board.prototype.checkLine = function(input, coordinate){
+Board.prototype.checkRow = function(input, coordinate){
   var isNotPresent = true;
   var x = coordinate[0];
   var y = coordinate[1];
@@ -33,11 +33,23 @@ Board.prototype.checkLine = function(input, coordinate){
   return isNotPresent;
 }
 
+Board.prototype.checkCol = function(input, coordinate){
+  var isNotPresent = true;
+  var x = coordinate[0];
+  var y = coordinate[1];
+  for(var i = 0; i < this.liveBoard.length; i++){
+    if(this.liveBoard[i][x] === input) {
+      isNotPresent = false;
+    }
+  }
+  return isNotPresent;
+}
+
 Board.prototype.checkInitCoord = function(coordinate){
   var isChangeable = true;
   var x = coordinate[0];
   var y = coordinate[1];
-  
+
   if(this.initBoard[y][x] !== 0){
     isChangeable = false;
   }
