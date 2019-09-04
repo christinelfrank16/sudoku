@@ -15,6 +15,7 @@ _{This is a detailed description of your application. Its purpose and usage.  Gi
 |program only accepts positive numeric input from user | 4 <br> apple | 4 <br> "invalid input"|
 |check that number is < 10| 4 <br> 11 | 4 <br> "invalid input" |
 | check that number is not already in current row | 9 (9 already exists in row) | "invalid input"|
+| check that selected coordinate is not where a fixed value from board creation is located | 3 at [3,4] (was present at board creation) <br> 3 at [2,3] (empty at board creation)| "invalid input" <br> 3 |
 | check that number is not already in current column | 9 (9 already exists in column) | "invalid input"|
 |check that board is complete | "submit when not complete" <br> "submit button when board is complete" | "not complete" <br> "congrats" |
 |checks that each set of 9 squares contains all numbers| contains: 1-9 <br> does not contain 1-9 | true <br> false|
