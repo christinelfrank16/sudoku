@@ -63,3 +63,11 @@ export function checkInput(input) {
   }
   return output;
 }
+
+Board.prototype.setValue = function(input, coordinate) {
+  var x = coordinate[0];
+  var y = coordinate[1];
+  if(this.checkRow(input, coordinate) && (this.checkCol(input, coordinate) && this.checkInitCoord(coordinate))) {
+    this.liveBoard[y][x] = input;
+  }
+}

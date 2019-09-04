@@ -65,8 +65,17 @@ describe('board-input-validation', function(){
     expect(reusableBoard.checkCol(input, coordinate)).toEqual(true);
   });
 
+  it('ensure input is stored when validation tests pass', function() {
+    var input = 4;
+    var coordinate = [2,3];
+    reusableBoard.setValue(input, coordinate);
+    expect(reusableBoard.liveBoard[3][2]).toEqual(input);
+  });
 
-
-
-
+  it('ensure input is stored when validation tests pass', function() {
+    var input = 8;
+    var coordinate = [2,3];
+    reusableBoard.setValue(input, coordinate);
+    expect(reusableBoard.liveBoard[3][2]).not.toEqual(input);
+  });
 });
