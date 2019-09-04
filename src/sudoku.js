@@ -56,9 +56,27 @@ Board.prototype.checkInitCoord = function(coordinate){
   return isChangeable;
 }
 
+Board.prototype.checkBox = function(input, coordinate){
+  var isNotPresent = true;
+  var x = coordinate[0];
+  var y = coordinate[1];
+
+  var startX = Math.floor(x/3)*3;
+  var startY = Math.floor(y/3)*3;
+
+  for(var i = startX; i < startX + 3; i++){
+    for(var j = startY; j < startY + 3; j++){
+      if(this.liveBoard[j][i] === input){
+        isNotPresent = false;
+      }
+    }
+  }
+  return isNotPresent;
+}
+
 export function checkInput(input) {
   var output = false;
-  if ( typeof input === 'number' && (input > 0 && input < 10)){
+  if ( typeof input === 'number' && (input >= 0 && input < 10)){
     output = true;
   }
   return output;
@@ -67,7 +85,7 @@ export function checkInput(input) {
 Board.prototype.setValue = function(input, coordinate) {
   var x = coordinate[0];
   var y = coordinate[1];
-  if(this.checkRow(input, coordinate) && (this.checkCol(input, coordinate) && this.checkInitCoord(coordinate))) {
+  if((this.checkRow(input, coordinate) && this.checkCol(input, coordinate)) && (this.checkBox(input, coordinate) && this.checkInitCoord(coordinate))) {
     this.liveBoard[y][x] = input;
   }
 }

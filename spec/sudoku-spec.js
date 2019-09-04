@@ -2,16 +2,19 @@ import {checkInput, Board} from '../src/sudoku.js';
 
 
 describe('input-validation', function() {
-
-  it('ensure input is numeric and positive', function() {
+  it('ensure input is numeric and positive or 0', function() {
+    var input = 0;
+    expect(checkInput(input)).toEqual(true);
+  });
+  it('ensure input is numeric and positive or 0', function() {
     var input = -4;
     expect(checkInput(input)).toEqual(false);
   });
-  it('ensure input is numeric and positive', function() {
+  it('ensure input is numeric and positive or 0', function() {
     var input = 4;
     expect(checkInput(input)).toEqual(true);
   });
-  it('ensure input is numeric and positive', function() {
+  it('ensure input is numeric and positive or 0', function() {
     var input = "-4";
     expect(checkInput(input)).toEqual(false);
   });
@@ -65,8 +68,20 @@ describe('board-input-validation', function(){
     expect(reusableBoard.checkCol(input, coordinate)).toEqual(true);
   });
 
-  it('ensure input is stored when validation tests pass', function() {
+  it('ensure input is not already present in the 3x3 grid - should fail', function(){
     var input = 4;
+    var coordinate = [2,3];
+    expect(reusableBoard.checkBox(input, coordinate)).toEqual(false);
+  });
+
+  it('ensure input is not already present in the 3x3 grid - should pass', function(){
+    var input = 2;
+    var coordinate = [2,3];
+    expect(reusableBoard.checkBox(input, coordinate)).toEqual(true);
+  });
+
+  it('ensure input is stored when validation tests pass', function() {
+    var input = 2;
     var coordinate = [2,3];
     reusableBoard.setValue(input, coordinate);
     expect(reusableBoard.liveBoard[3][2]).toEqual(input);
@@ -78,4 +93,5 @@ describe('board-input-validation', function(){
     reusableBoard.setValue(input, coordinate);
     expect(reusableBoard.liveBoard[3][2]).not.toEqual(input);
   });
+
 });
