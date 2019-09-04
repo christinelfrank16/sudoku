@@ -1,6 +1,7 @@
 export function Board(){
   this.liveBoard = this.makeBoard();
   this.initBoard = this.makeBoard();
+  this.movesLeft = this.countStartSpaces();
 }
 
 Board.prototype.makeBoard = function(){
@@ -16,6 +17,18 @@ Board.prototype.makeBoard = function(){
   newArray.push([0,0,0,0,8,0,0,7,9]);
 
   return newArray;
+}
+
+Board.prototype.countStartSpaces = function(){
+  var count = 0;
+  for(var row = 0; row < this.initBoard.length; row++){
+    for(var col = 0; col < this.initBoard[0].length; col++){
+      if(this.initBoard[row][col] === 0){
+        count++;
+      }
+    }
+  }
+  return count;
 }
 
 Board.prototype.checkRow = function(input, coordinate){
@@ -87,7 +100,9 @@ Board.prototype.setValue = function(input, coordinate) {
 
   if(input === 0 && this.checkInitCoord(coordinate)) {
     this.liveBoard[y][x] = input;
+    this.movesLeft++;
   } else if((this.checkRow(input, coordinate) && this.checkCol(input, coordinate)) && (this.checkBox(input, coordinate) && this.checkInitCoord(coordinate))) {
     this.liveBoard[y][x] = input;
+    this.movesLeft--;
   }
 }

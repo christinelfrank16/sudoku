@@ -95,16 +95,38 @@ describe('board-input-validation', function(){
 
   it('ensure value is removed when input is 0', function() {
     var coordinate = [2,3];
-    console.log("start live", reusableBoard.liveBoard[3][2]);
-    console.log("start init", reusableBoard.initBoard[3][2]);
-
     reusableBoard.liveBoard[3][2] = 2;
-    console.log("first live", reusableBoard.liveBoard[3][2]);
-    console.log("first init", reusableBoard.initBoard[3][2]);
+
     var secondInput = 0;
     reusableBoard.setValue(secondInput, coordinate);
-    console.log("second", reusableBoard.liveBoard[3][2]);
     expect(reusableBoard.liveBoard[3][2]).toEqual(secondInput);
   });
+});
 
+describe('game-play', function(){
+  var reusableBoard;
+  beforeEach(function(){
+    reusableBoard = new Board();
+  });
+
+  it('should display an end-game message when no more spaces are available to be filled', function(){
+    reusableBoard.movesLeft = 1;
+    var input = 2;
+    var coordinate = [2,3];
+    reusableBoard.setValue(input, coordinate);
+    expect(reusableBoard.movesLeft).toEqual(0);
+  });
+
+  it('should account for spaces cleared by user', function(){
+    reusableBoard.movesLeft = 2;
+
+    var firstInput = 2;
+    var coordinate = [2,3];
+    reusableBoard.setValue(firstInput, coordinate);
+    expect(reusableBoard.movesLeft).toEqual(1);
+
+    var secondInput = 0;
+    reusableBoard.setValue(secondInput, coordinate);
+    expect(reusableBoard.movesLeft).toEqual(2);
+  });
 });
