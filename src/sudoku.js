@@ -1,6 +1,6 @@
 export function Board(){
-  this.liveBoard =[];
-  this.initBoard =[];
+  this.liveBoard = this.makeBoard();
+  this.initBoard = this.makeBoard();
 }
 
 Board.prototype.makeBoard = function(){
@@ -15,8 +15,7 @@ Board.prototype.makeBoard = function(){
   newArray.push([0,0,0,4,1,9,0,0,5]);
   newArray.push([0,0,0,0,8,0,0,7,9]);
 
-  this.liveBoard = newArray.slice();
-  this.initBoard = newArray.slice();
+  return newArray;
 }
 
 Board.prototype.checkRow = function(input, coordinate){
@@ -85,7 +84,10 @@ export function checkInput(input) {
 Board.prototype.setValue = function(input, coordinate) {
   var x = coordinate[0];
   var y = coordinate[1];
-  if((this.checkRow(input, coordinate) && this.checkCol(input, coordinate)) && (this.checkBox(input, coordinate) && this.checkInitCoord(coordinate))) {
+
+  if(input === 0 && this.checkInitCoord(coordinate)) {
+    this.liveBoard[y][x] = input;
+  } else if((this.checkRow(input, coordinate) && this.checkCol(input, coordinate)) && (this.checkBox(input, coordinate) && this.checkInitCoord(coordinate))) {
     this.liveBoard[y][x] = input;
   }
 }

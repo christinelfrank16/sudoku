@@ -31,7 +31,6 @@ describe('board-input-validation', function(){
 
   beforeEach(function(){
     reusableBoard = new Board();
-    reusableBoard.makeBoard();
   });
 
   it('ensure input is not already present in the row', function(){
@@ -92,6 +91,20 @@ describe('board-input-validation', function(){
     var coordinate = [2,3];
     reusableBoard.setValue(input, coordinate);
     expect(reusableBoard.liveBoard[3][2]).not.toEqual(input);
+  });
+
+  it('ensure value is removed when input is 0', function() {
+    var coordinate = [2,3];
+    console.log("start live", reusableBoard.liveBoard[3][2]);
+    console.log("start init", reusableBoard.initBoard[3][2]);
+
+    reusableBoard.liveBoard[3][2] = 2;
+    console.log("first live", reusableBoard.liveBoard[3][2]);
+    console.log("first init", reusableBoard.initBoard[3][2]);
+    var secondInput = 0;
+    reusableBoard.setValue(secondInput, coordinate);
+    console.log("second", reusableBoard.liveBoard[3][2]);
+    expect(reusableBoard.liveBoard[3][2]).toEqual(secondInput);
   });
 
 });

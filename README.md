@@ -19,7 +19,8 @@ _{This is a detailed description of your application. Its purpose and usage.  Gi
 | check that number is not already in current column | 9 (9 already exists in column) <br> 9 (no 9 present)| false <br> true|
 |checks that each set of 9 squares contains all numbers| contains: 1-9 <br> does not contain 1-9 | true <br> false|
 | user input stored and displayed only when board validation checks are passing | row check fails <br> all checks pass | "invalid input" <br> 3 at [2,3] |
-|check that board is complete | "submit when not complete" <br> "submit button when board is complete" | "not complete" <br> "congrats" |
+| allows user input of 0 to remove value from box without performing row or grid checks| 0 (current value 2) | displayed value removed|
+|indicate game is over when all spaces are successfully filled | All spaces filled | "Congratulations! Game Completed!" |
 |builds a winnable board | none | generates values and makes some empty and some fixed |
 
 
